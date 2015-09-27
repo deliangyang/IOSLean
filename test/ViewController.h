@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+// 接口定义
 @interface ViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *sliderLabel;
 
 @end
 
