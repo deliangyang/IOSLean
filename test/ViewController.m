@@ -13,6 +13,10 @@
 
     UILabel *sliderLl;
     UISlider *slider;
+    
+    NSArray *tableData;
+    
+    UITableView *_tableView;
 }
 @end
 
@@ -20,10 +24,14 @@
 
 - (void)viewDidLoad {
     
+    tableData = [NSArray arrayWithObjects:@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast", @"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White Chocolate Donut", @"Starbucks Coffee", @"Vegetable Curry", @"Instant Noodle with Egg", @"Noodle with BBQ Pork", @"Japanese Noodle with Pork", @"Green Tea", @"Thai Shrimp Cake", @"Angry Birds Cake", @"Ham and Cheese Panini", nil];
+
+    
     [super viewDidLoad];
-    [self addButton];
-    [self addSlider];
-    [self addsliderLabel];
+    [self addTableView];
+    //[self addButton];
+    //[self addSlider];
+    //[self addsliderLabel];
 //    Do any additional setup after loading the view, typically from a nib.
 //    NSString *path = [[NSBundle mainBundle] resourcePath];
 //    NSLog(@"%@", path);
@@ -35,6 +43,38 @@
 //    
 //    [self.view addSubview:imageView];
     
+}
+
+- (void)addTableView {
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(20, 20, 300, 300)
+                                              style:UITableViewStylePlain];
+    _tableView.dataSource = self;
+    _tableView.delegate = self;
+    [self.view addSubview:_tableView];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSLog(@"hello worold2");
+    return tableData.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *identifier = @"TTTT";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:identifier];
+    }
+    cell.textLabel.text = tableData[indexPath.row];
+    cell.textLabel.numberOfLines = 0;
+    
+    return cell;
 }
 
 - (void)addsliderLabel {

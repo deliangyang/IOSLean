@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 // 接口定义
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UILabel *sliderLabel;
 
