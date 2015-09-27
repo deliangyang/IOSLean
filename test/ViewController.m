@@ -13,6 +13,7 @@
 
     UILabel *sliderLl;
     UISlider *slider;
+    UIScrollView *scrollView;
     
     NSArray *tableData;
     
@@ -46,11 +47,16 @@
 }
 
 - (void)addTableView {
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(20, 20, 300, 300)
+    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(20, 20, 300, 800)];
+    scrollView.backgroundColor = [UIColor yellowColor];
+    
+    [self.view addSubview:scrollView];
+    
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(20, 20, 300, 800)
                                               style:UITableViewStylePlain];
     _tableView.dataSource = self;
     _tableView.delegate = self;
-    [self.view addSubview:_tableView];
+    [scrollView addSubview:_tableView];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -59,7 +65,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"hello worold2");
     return tableData.count;
 }
 
